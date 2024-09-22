@@ -1,0 +1,7 @@
+/.idea
+/NumberCorridor.exe
+/NumberCorridor
+/build-linux/
+/build-windows/
+/cmake-build-debug/
+/cmake-build-release/
