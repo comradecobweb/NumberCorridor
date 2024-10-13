@@ -13,7 +13,7 @@ void Numbers::see(int & index)
     {
         clear();
         cout << "Number " << yellow << (index + 1) << reset << "/" << blue << length << reset << ":" << endl
-             << endl << "\t" << magenta << random->get(index) << reset << endl << endl;
+             << endl << "\t" << magenta << questions->get(index) << reset << endl << endl;
 
         if (index != length)
         {
@@ -54,9 +54,9 @@ void Numbers::write(int & index)
              << endl << "\t";
         answer = read(magenta);
 
-        if (answer <= user->getMax()-1)
+        if (answer <= max-1 && answer > 0)
         {
-            if (user->set(index,answer))
+            if (answers->set(index, answer))
             {
                 break;
             }
@@ -76,22 +76,21 @@ void Numbers::summary()
 
     for (int i = 0; i != length; ++i)
     {
-        if (random->get(i)==user->get(i))
+        if (questions->get(i)==answers->get(i))
         {
-            cout <<yellow << (i+1) << reset << ".\t" << green << random -> get(i) << reset << endl;
+            cout <<yellow << (i+1) << reset << ".\t" << green << questions -> get(i) << reset << endl;
         }
 
         else
         {
             cout <<yellow << (i+1) << reset
-            << ".\t" << red << user -> get(i) << reset
-            << "\t" << green << random -> get(i) << reset << endl;
+            << ".\t" << red << answers -> get(i) << reset
+            << "\t" << green << questions -> get(i) << reset << endl;
             wrong++;
         }
     }
 
-    float score = calculatePercentages(static_cast<float>(length - wrong),
-                                       static_cast<float>(length));
+    float score = getScore(static_cast<float>(wrong));
 
     cout << endl << endl << "Summary:" << endl << endl << endl
     << "Good:\t\t" << green << length-wrong << reset << endl
@@ -106,17 +105,18 @@ void Numbers::summary()
         cout << red;
     }
 
-    cout << score << "%" << reset << endl << endl << endl << "Time stats (in " << yellow << "seconds"
+    cout << score << "%" << reset << endl << endl << endl << "Time stats (in "
+    << yellow << "seconds"
     << reset << "):" << endl << endl << endl
-    << magenta << "Memorization"<< reset <<" time:\t" << blue << memorization_time
+    << magenta << "Memorization"<< reset <<" time:\t" << blue << getMemorizationTime()
     << reset << endl
-    << cyan << "Recall"<< reset <<" time:\t\t" << blue << recall_time << reset << endl
-    << green << "Total" << reset << " time:\t\t" << blue << (memorization_time+recall_time)
+    << cyan << "Recall"<< reset <<" time:\t\t" << blue << getRecallTime() << reset << endl
+    << green << "Total" << reset << " time:\t\t" << blue << getTotalTime()
     << reset <<  endl << endl
 
     << "Single number " << magenta << "memorization" << reset << " time:\t" << blue <<
-    (memorization_time/static_cast<float>(length)) << reset << endl
-    << "Single number " << cyan << "recall" << reset << " time:\t\t" << blue << (recall_time/static_cast<float>(length))
+    singleNumberMemorizationTime() << reset << endl
+    << "Single number " << cyan << "recall" << reset << " time:\t\t" << blue << singleNumberRecallTime()
     << reset << endl << endl
 
     << endl <<"Write something to close summary:" << endl;

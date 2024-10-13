@@ -3,17 +3,15 @@
 #define GAME_HPP
 
 
-#include "number_arrays.hpp"
 #include "terminal.hpp"
 #include "game.hpp"
 
 
-class Numbers: public Game{
+class Numbers: public Game<int>{
+
 
 private:
-    RandomArray *random;
-    UserArray *user;
-
+    const int max;
 
 protected:
     void see(int & index) override;
@@ -21,19 +19,19 @@ protected:
 
 
 public:
-    inline Numbers(const int &length, const int & max): Game(length)
+    inline Numbers(const int &length, const int & max): Game(length), max(max)
     {
-        random = new RandomArray(length, max);
-        user = new UserArray(length, max);
+        srand(time(NULL));
+        for (int i = 0; i < length; ++i)
+        {
+            answers->set(i, 0);
+            questions->set(i, rand() % max + 0);
+        }
     }
 
     void summary() override;
 
-    inline ~Numbers() override
-    {
-        delete random;
-        delete user;
-    }
+    ~Numbers() override = default;
 };
 
 
