@@ -14,7 +14,8 @@ add_executable(NumberCorridor
         ${CMAKE_SOURCE_DIR}/src/terminal.cpp
         ${CMAKE_SOURCE_DIR}/src/game.cpp
         ${CMAKE_SOURCE_DIR}/src/generator.c
-        ${CMAKE_SOURCE_DIR}/src/game_builder.cpp)
+        ${CMAKE_SOURCE_DIR}/src/game_builder.cpp
+        ${CMAKE_SOURCE_DIR}/src/array.cpp)
 
 
 include_directories(${CMAKE_SOURCE_DIR}/inc/)
