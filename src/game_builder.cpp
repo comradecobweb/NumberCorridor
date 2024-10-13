@@ -108,7 +108,7 @@ void GameBuilder::readGroupSize()
 int GameBuilder::run()
 {
     using namespace std;
-    Game *game;
+    Game<int> *game;
     try
     {
 
