@@ -102,3 +102,5 @@ void Game<T>::wait()
         }
     }
 }
+
+template class Game<int>;
