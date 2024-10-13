@@ -132,3 +132,5 @@ bool Array<T>::set(const int &group_index, T *values)
         return false;
     }
 }
+
+template class Array<int>;
