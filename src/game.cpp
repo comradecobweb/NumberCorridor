@@ -3,8 +3,8 @@
 
 ///
 /// @brief This function is responsible for the memorization screen.
-template <class T>
-void Game<T>::memorization()
+template <class T, size_t group_size>
+void Game<T, group_size>::memorization()
 {
     using namespace std::chrono;
     auto start = high_resolution_clock::now();
@@ -21,8 +21,8 @@ void Game<T>::memorization()
 
 ///
 /// @brief This function is responsible for the recall screen.
-template <class T>
-void Game<T>::recall()
+template <class T, size_t group_size>
+void Game<T, group_size>::recall()
 {
     using namespace std::chrono;
     auto start = high_resolution_clock::now();
@@ -43,8 +43,8 @@ void Game<T>::recall()
 ///
 /// This screen appears between the remember and recall screens, and after the recall screen.
 /// It has 2 versions depending on when it appears.
-template <class T>
-void Game<T>::wait()
+template <class T, size_t group_size>
+void Game<T, group_size>::wait()
 {
     using namespace std;
     bool b = true;
@@ -103,4 +103,4 @@ void Game<T>::wait()
     }
 }
 
-template class Game<int>;
+template class Game<int, 1>;

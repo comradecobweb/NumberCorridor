@@ -8,7 +8,7 @@
 #include "array.hpp"
 
 
-template <class T> class Game{
+template <class T, size_t group_size = 1> class Game{
 
 private:
     bool finished;
@@ -22,7 +22,6 @@ private:
 
 protected:
     const int length;
-    const size_t group_size;
 
     Array<T> * questions;
     Array<T> * answers;
@@ -80,14 +79,7 @@ public:
     virtual void summary() = 0;
 
     inline explicit Game(const int &length):
-    finished(false), length(length), group_size(1), memorization_time(0.0f),recall_time(0.0f)
-    {
-        questions = new Array<T>(length, group_size);
-        answers = new Array<T>(length, group_size);
-    };
-
-    inline explicit Game(const int &length, const size_t &group_size):
-            finished(false), length(length), group_size(group_size), memorization_time(0.0f),recall_time(0.0f)
+    finished(false), length(length), memorization_time(0.0f),recall_time(0.0f)
     {
         questions = new Array<T>(length, group_size);
         answers = new Array<T>(length, group_size);

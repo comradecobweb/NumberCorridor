@@ -108,7 +108,7 @@ void GameBuilder::readGroupSize()
 int GameBuilder::run()
 {
     using namespace std;
-    Game<int> *game;
+    Game<int, 1> *game;
     try
     {
 
@@ -126,10 +126,10 @@ int GameBuilder::run()
         {
             switch (mode) {
                 case decimal:
-                    game = new Numbers(length, max);
+                    game = new Numbers<1>(length, max);
                     break;
                 case binary:
-                    game = new Numbers(length, 2);
+                    game = new Numbers<1>(length, 2);
                     break;
 
             }

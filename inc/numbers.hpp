@@ -7,7 +7,7 @@
 #include "game.hpp"
 
 
-class Numbers: public Game<int>{
+template <size_t group_size = 1> class Numbers: public Game<int, group_size>{
 
 
 private:
@@ -19,13 +19,13 @@ protected:
 
 
 public:
-    inline Numbers(const int &length, const int & max): Game(length), max(max)
+    inline Numbers(const int &length, const int & max): Game<int, group_size>(length), max(max)
     {
-        srand(time(NULL));
+        srand(time(nullptr));
         for (int i = 0; i < length; ++i)
         {
-            answers->set(i, 0);
-            questions->set(i, rand() % max + 0);
+            this->answers->set(i, 0);
+            this->questions->set(i, rand() % max + 0);
         }
     }
 
