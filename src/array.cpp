@@ -4,11 +4,14 @@
 ///
 /// @brief Constructor of NumberArray class.
 /// @param length Length of the array.
-/// @throw std::bad_alloc If can't allocate memory for the array, or length is incorrect.
+/// @param group_size Size of groups in the array.
+/// @throw std::bad_alloc If can't allocate memory for the array.
+/// @throw std::invalid_argument() If group_size, or length are incorrect.
 template <class T>
 Array<T>::Array(const int &length, const size_t &group_size):length(length), group_size(group_size)
 {
-    if (length < 0) throw std::bad_alloc();
+    if (length <= 0) throw std::invalid_argument("Array length must be greater than 0!");
+    if (group_size == 0) throw std::invalid_argument("group_size in Array must be greater than 0!");
 
 
     array_data = (T *)malloc(sizeof(array_data)*length);
