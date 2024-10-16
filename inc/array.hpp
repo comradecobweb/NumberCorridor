@@ -5,6 +5,7 @@
 
 #include <cstdlib>
 #include <stdexcept>
+#include <climits>
 
 template <class T> class Array{
 
