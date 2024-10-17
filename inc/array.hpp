@@ -21,7 +21,7 @@ private:
     /// @return Index of the first element of the given group.
     [[nodiscard]] inline int calculateIndex(const int &group_index) const
     {
-        return group_index - 1 * group_size;
+        return group_index * group_size;
     }
 
     ///
