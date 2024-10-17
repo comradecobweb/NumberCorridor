@@ -41,34 +41,28 @@ T Array<T>::get(const int &index) const
 ///
 /// @brief This function is used for get groups of the array.
 /// @param group_index Position of an group in the array.
-/// @return Selected group or nullptr if the index is invalid or cannot allocate memory.
+/// @throw std::bad_alloc If can't allocate memory for the array.
+/// @throw std::invalid_argument() If group_index is incorrect.
+/// @return Elements of the selected group.
 template <class T>
 T *Array<T>::getGroup(const int &group_index) const
 {
     using namespace std;
 
-    if (validateGroupIndex(group_index))
+    if (!validateGroupIndex(group_index)) throw std::invalid_argument("Invalid group_index!");
+
+    T * array =(T *) malloc(sizeof(T)*group_size);
+
+    if (!array) throw std::bad_alloc();
+
+    const int index = calculateIndex(group_index);
+
+    for (int i = index, j = 0; i < index + group_size; i++, j++)
     {
-        T * array =(T *) malloc(sizeof(T)*group_size);
-
-        if (!array)
-        {
-            return nullptr;
-        }
-
-        const int index = calculateIndex(group_index);
-
-        for (int i = index, j = 0; i < index + group_size; i++, j++)
-        {
-            array[j] = array_data[i];
-        }
-
-        return array;
+        array[j] = array_data[i];
     }
-    else
-    {
-        return nullptr;
-    }
+
+    return array;
 }
 
 ///
