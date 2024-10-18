@@ -146,3 +146,5 @@ void Game<T, group_size>::wait()
 }
 
 template class Game<int, 1>;
+template class Game<int, 2>;
+template class Game<int, 3>;
