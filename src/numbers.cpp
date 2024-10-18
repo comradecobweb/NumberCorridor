@@ -56,7 +56,7 @@ void Numbers<1>::write(int & index)
              << endl << "\t";
         answer = read(magenta);
 
-        if (answer <= max-1 && answer > 0)
+        if (answer <= max-1 && answer > -1)
         {
             if (this->answers->set(index, answer))
             {
@@ -165,7 +165,7 @@ void Numbers<group_size>::write(int & index)
             cout << reset << endl << endl;
             answer = read(magenta);
 
-            if (answer <= max-1 && answer > 0)
+            if (answer <= max-1 && answer > -1)
             {
                 array[i] = answer;
                 break;
