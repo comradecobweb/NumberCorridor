@@ -15,11 +15,6 @@ private:
     float recall_time;
     float memorization_time;
 
-    [[nodiscard]] int countGroups() const
-    {
-        return length/group_size;
-    }
-
 protected:
     const int length;
 
@@ -68,6 +63,9 @@ protected:
     {
         return finished;
     }
+
+    [[nodiscard]] int countGroups() const;
+    [[nodiscard]] int getGroupSize(const int & group_index) const;
 
 
 public:

@@ -39,6 +39,48 @@ void Game<T, group_size>::recall()
 }
 
 ///
+/// @brief Counts groups.
+/// @return Number of groups.
+template <class T, size_t group_size>
+int Game<T, group_size>::countGroups() const
+{
+    if (length % group_size != 0)
+    {
+        return length/group_size + 1;
+    }
+    else
+    {
+        return length/group_size;
+    }
+}
+
+///
+/// @brief Calculates the group size (taking into account any irregular size of the last group).
+/// @param group_index Index of a group in the Array.
+/// @return Group size.
+template <class T, size_t group_size>
+int Game<T, group_size>::getGroupSize(const int &group_index) const
+{
+    if (group_index==countGroups() - 1)
+    {
+        const int remainder = length % group_size;
+
+        if (remainder==0)
+        {
+            return group_size;
+        }
+        else
+        {
+            return remainder;
+        }
+    }
+    else
+    {
+        return group_size;
+    }
+}
+
+///
 /// @brief This function is responsible for the wait screen.
 ///
 /// This screen appears between the remember and recall screens, and after the recall screen.
