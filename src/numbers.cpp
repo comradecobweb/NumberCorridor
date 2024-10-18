@@ -205,7 +205,7 @@ void Numbers<group_size>::summary()
         }
     }
 
-    float score = this->getScore(static_cast<float>(wrong));
+    float score = this->getScore(wrong);
 
     cout << endl << endl << "Summary:" << endl << endl << endl
     << "Good:\t\t" << green << this->length-wrong << reset << endl
@@ -230,8 +230,8 @@ void Numbers<group_size>::summary()
     << reset <<  endl << endl
 
     << "Single number " << magenta << "memorization" << reset << " time:\t" << blue <<
-    this->singleNumberMemorizationTime() << reset << endl
-    << "Single number " << cyan << "recall" << reset << " time:\t\t" << blue << this->singleNumberRecallTime()
+    this->getSingleNumberMemorizationTime() << reset << endl
+    << "Single number " << cyan << "recall" << reset << " time:\t\t" << blue << this->getSingleNumberRecallTime()
     << reset << endl << endl
 
     << endl <<"Write something to close summary:" << endl;

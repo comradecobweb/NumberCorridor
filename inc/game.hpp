@@ -29,9 +29,9 @@ protected:
     /// @brief Calculates the result in percentage.
     /// @param wrong Number of wrong answers.
     /// @return The result is calculated as a percentage.
-    [[nodiscard]] inline float getScore(const float &wrong) const
+    [[nodiscard]] inline float getScore(const int &wrong) const
     {
-        return (static_cast<float>(length - wrong) * 100 /static_cast<float>(length));
+        return (static_cast<float>(length) - static_cast<float>(wrong) * 100.0f / static_cast<float>(length));
     }
 
     [[nodiscard]] inline float getTotalTime()const
@@ -39,12 +39,12 @@ protected:
         return memorization_time+recall_time;
     }
 
-    [[nodiscard]] inline float singleNumberMemorizationTime()const
+    [[nodiscard]] inline float getSingleNumberMemorizationTime()const
     {
         return memorization_time/static_cast<float>(length);
     }
 
-    [[nodiscard]] inline float singleNumberRecallTime()const
+    [[nodiscard]] inline float getSingleNumberRecallTime()const
     {
         return recall_time/static_cast<float>(length);
     }
