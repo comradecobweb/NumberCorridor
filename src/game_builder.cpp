@@ -2,22 +2,9 @@
 
 
 ///
-/// @brief Constructor of the GameBuilder class.
-/// @param max Upper limit of generated numbers.
-/// @param length Number of numbers to remember.
-/// @param group_size 1, 2, or 3 for single, PA and PAO games respectively.
-GameBuilder::GameBuilder(const int &max, const int &length, const int &group_size)
-{
-    data.length = length;
-    data.max = max;
-    data.group_size = group_size;
-    data = getCompleteData(data);
-}
-
-///
 /// @brief Reads a mode from the user.
 /// @return Mode.
-int GameBuilder::readMode()
+int game_data::readMode()
 {
     using namespace std;
     int answer;
@@ -38,7 +25,7 @@ int GameBuilder::readMode()
 ///
 /// @biref Reads the number of digits to remember.
 /// @return Number of digits to remember.
-int GameBuilder::readLength()
+int game_data::readLength()
 {
     using namespace std;
     int answer;
@@ -58,7 +45,7 @@ int GameBuilder::readLength()
 ///
 /// @brief Reads a max value from the user.
 /// @return Given value.
-int GameBuilder::readMax()
+int game_data::readMax()
 {
     using namespace std;
     int answer;
@@ -78,7 +65,7 @@ int GameBuilder::readMax()
 ///
 /// @brief Reads a group size from the user.
 /// @return Group size.
-int GameBuilder::readGroupSize()
+int game_data::readGroupSize()
 {
     using namespace std;
     int answer;
@@ -98,54 +85,59 @@ int GameBuilder::readGroupSize()
 
 ///
 /// @brief Undefined values in game_data (-1) are set to user-supplied values.
-/// @param in game_data to initialize.
-/// @return Initialized game_data.
-game_data GameBuilder::getCompleteData(const game_data &in)
+void game_data::initialize()
 {
-    if (in.isInitialized())
+    if(group_size == -1)
     {
-        return in;
+        group_size = readGroupSize();
     }
 
-    game_data out;
-
-
-    if(in.group_size != -1)
+    if (length == -1)
     {
-        out.group_size = in.group_size;
-    }
-    else
-    {
-        out.group_size = readGroupSize();
+        length = readLength();
     }
 
-    if (in.length != -1)
-    {
-        out.length = in.length;
-    }
-    else
-    {
-        out.length = readLength();
-    }
-
-    if (in.max != -1)
-    {
-        out.max = in.max;
-    }
-    else
+    if (max == -1)
     {
         const int mode = readMode();
         if (mode==DECIMAL)
         {
-            out.max = readMax();
+            max = readMax();
         }
         else
         {
-            out.max = 2;
+            max = 2;
         }
-
     }
-    return out;
+}
+
+
+///
+/// @brief Constructor of the GameBuilder class.
+/// @param max Upper limit of generated numbers.
+/// @param length Number of numbers to remember.
+/// @param group_size 1, 2, or 3 for single, PA and PAO games respectively.
+/// @throws std::invalid_argument If max, length, or group_size are incorrect.
+GameBuilder::GameBuilder(const int &max, const int &length, const int &group_size)
+{
+    data.length = length;
+    data.max = max;
+    data.group_size = group_size;
+    if (!data.isInitialized()) data.initialize();
+    if (!data.isValid()) throw std::invalid_argument("Invalid GameBuilder parameters!");
+}
+
+///
+/// @brief Constructor of the GameBuilder class.
+/// @param param_data game_data structure.
+/// @throws std::invalid_argument If max, length, or group_size in param_data are incorrect.
+GameBuilder::GameBuilder(const game_data &param_data)
+{
+    data.length=param_data.length;
+    data.max=param_data.max;
+    data.group_size=param_data.group_size;
+    if (!data.isInitialized()) data.initialize();
+    if (!data.isValid()) throw std::invalid_argument("Invalid GameBuilder parameters!");
 }
 
 ///
@@ -172,17 +164,15 @@ void GameBuilder::run()
     {
         clear();
         cout << red << "Error:" << reset << endl
-             << "Could not allocate memory!" << endl << endl
-             << "Write something to continue:" << endl;
-        read();
+             << "Could not allocate memory!" << endl << endl;
+        exit(-1);
     }
     catch(invalid_argument &i)
     {
         clear();
         cout << red << "Error:" << reset << endl
-             << "Internal error!" << endl << endl
-             << "Write something to continue:" << endl;
-        read();
+             << "Internal error!" << endl << endl;
+        exit(-1);
     }
 }
 
