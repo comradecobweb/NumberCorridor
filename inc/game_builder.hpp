@@ -6,34 +6,57 @@
 #include "terminal.hpp"
 #include "game.hpp"
 #include "numbers.hpp"
+#include <climits>
 
 
-enum modes {decimal, binary};
+#define DECIMAL 1
 
+
+///
+/// @brief A structure containing the data of the GameBuilder class.
+typedef struct game_data
+{
+    int group_size = -1;
+    int length = -1;
+    int max = -1;
+
+    ///
+    /// @brief Checks whether all fields in the structure have values different from -1.
+    /// @return True if yes, false if no.
+    [[nodiscard]] inline bool isInitialized() const
+    {
+        return group_size != -1 && length != -1 && max != -1;
+    }
+
+    /*
+    [[nodiscard]] inline bool isValid() const
+    {
+        return group_size > 0 && group_size < 4 && length > 0 && max > 1;
+    }
+     */
+
+} game_data;
 
 ///
 /// @brief This class is used for run the game.
 class GameBuilder{
 
 private:
-    modes mode;
-    int length;
-    int max;
-    bool grouped = false;
-    int group_size;
+    static int readMode();
+    static int readLength();
+    static int readMax();
+    static int readGroupSize();
+    static game_data getCompleteData(const game_data & in);
 
-    void readMode();
-    void readLength();
-    void readMax();
-    void readGrouped();
-    void readGroupSize();
+    void single() const;
+    void PA() const;
+    void PAO() const;
+
+    game_data data;
 public:
-    GameBuilder();
-    explicit GameBuilder(const int & max);
-    GameBuilder(const int & max, const int & length);
-    int run();
+    explicit GameBuilder(const int & max = -1, const int & length = -1, const int &  group_size = -1);
+    void run();
 };
-
 
 
 #endif //GAME_BUILDER_HPP

@@ -1,8 +1,23 @@
 #include "game_builder.hpp"
 
+
 ///
-/// @brief Reads a mode from the user. It does not return it, but saves it to the appropriate class member.
-void GameBuilder::readMode()
+/// @brief Constructor of the GameBuilder class.
+/// @param max Upper limit of generated numbers.
+/// @param length Number of numbers to remember.
+/// @param group_size 1, 2, or 3 for single, PA and PAO games respectively.
+GameBuilder::GameBuilder(const int &max, const int &length, const int &group_size)
+{
+    data.length = length;
+    data.max = max;
+    data.group_size = group_size;
+    data = getCompleteData(data);
+}
+
+///
+/// @brief Reads a mode from the user.
+/// @return Mode.
+int GameBuilder::readMode()
 {
     using namespace std;
     int answer;
@@ -12,219 +27,200 @@ void GameBuilder::readMode()
         cout << "Write " << cyan << 1 << reset << " to memorize decimal numbers."<< endl;
         cout << "Write " << cyan << 2 << reset << " to memorize binary numbers."<< endl;
         answer = read();
-        if (answer==1)
-        {
-            mode = decimal;
-            break;
-        }
-        if (answer==2)
-        {
-            mode = binary;
-            max = 2;
-            break;
-        }
-    }
-}
-
-///
-/// @biref Reads a length from the user. It does not return it, but saves it to the appropriate class member.
-void GameBuilder::readLength()
-{
-    using namespace std;
-    while (true)
-    {
-        clear();
-        cout << "Write how many numbers do you want to remember (minimal is 1, max is 100000): " << endl;
-        length = read();
-        if (length > 0 && length < 100001)
+        if (answer==1 || answer==2)
         {
             break;
         }
     }
+    return answer;
 }
 
 ///
-/// @brief Reads a max value from the user. It does not return it, but saves it to the appropriate class member.
-void GameBuilder::readMax()
-{
-    using namespace std;
-    while (true)
-    {
-        clear();
-        cout << "Write max number do you want to remember (minimal is 1): " << endl;
-        max = read();
-        if (max > 0)
-        {
-            break;
-        }
-    }
-}
-
-///
-/// @brief Reads a grouped from the user. It does not return it, but saves it to the appropriate class member.
-void GameBuilder::readGrouped()
+/// @biref Reads the number of digits to remember.
+/// @return Number of digits to remember.
+int GameBuilder::readLength()
 {
     using namespace std;
     int answer;
     while (true)
     {
         clear();
-        cout << "Write " << cyan << 1 << reset << " to use number groups."<< endl;
-        cout << "Write " << cyan << 2 << reset << " to don't use number groups."<< endl;
+        cout << "Write how many numbers do you want to remember (minimal is 1, max is 100000): " << endl;
         answer = read();
-        if (answer==1)
+        if (answer > 0 && answer < 100001)
         {
-            grouped = true;
-            break;
-        }
-        if (answer==2)
-        {
-            grouped = false;
             break;
         }
     }
+    return answer;
 }
 
 ///
-/// @brief Reads a group size from the user. It does not return it, but saves it to the appropriate class member.
-void GameBuilder::readGroupSize()
+/// @brief Reads a max value from the user.
+/// @return Given value.
+int GameBuilder::readMax()
 {
     using namespace std;
+    int answer;
     while (true)
     {
         clear();
-        cout << "Write how many numbers do you want to remember (minimal is 2, max is 100000): " << endl;
-        group_size = read();
-        if (group_size > 1 && group_size < 100001)
+        cout << "Write max number do you want to remember (minimal is 2): " << endl;
+        answer = read();
+        if (answer > 2 && answer != INT_MAX)
         {
             break;
+        }
+    }
+    return answer;
+}
+
+///
+/// @brief Reads a group size from the user.
+/// @return Group size.
+int GameBuilder::readGroupSize()
+{
+    using namespace std;
+    int answer;
+    while (true)
+    {
+        clear();
+        cout << "Write " << cyan << 1 << reset << " to memorize single numbers." << endl
+             << "Write " << cyan << 2 << reset << " to memorize using PA." << endl
+             << "Write " << cyan << 3 << reset << " to memorize using PAO." << endl;
+        answer = read();
+        if (answer == 1 || answer == 2 || answer == 3)
+        {
+            return answer;
         }
     }
 }
 
 ///
-/// @brief This function is used for run the game.
-/// @return 0 on success, otherwise -1.
-int GameBuilder::run()
+/// @brief Undefined values in game_data (-1) are set to user-supplied values.
+/// @param in game_data to initialize.
+/// @return Initialized game_data.
+game_data GameBuilder::getCompleteData(const game_data &in)
 {
-    using namespace std;
-    Game<int, 1> *game;
-    try
+    if (in.isInitialized())
     {
-
-        if (grouped)
-        {
-            switch (mode) {
-                case decimal:
-                    return -1;
-                    break;
-                case binary:
-                    return -1;
-                    break;
-            }
-        }else
-        {
-            switch (mode) {
-                case decimal:
-                    game = new Numbers<1>(length, max);
-                    break;
-                case binary:
-                    game = new Numbers<1>(length, 2);
-                    break;
-
-            }
-        }
-
-
-    }catch (bad_alloc &b)
-    {
-        clear();
-        cout << red << "Error:" << reset << endl
-             << "Wrong length value!" << endl << endl
-             << "Write something to continue:" << endl;
-        read();
-        return -1;
-    }catch (invalid_argument &i)
-    {
-        clear();
-        cout << red << "Error:" << reset << endl
-             << "Wrong max value!" << endl << endl
-             << "Write something to continue:" << endl;
-        read();
-        return -1;
+        return in;
     }
 
+    game_data out;
+
+
+    if(in.group_size != -1)
+    {
+        out.group_size = in.group_size;
+    }
+    else
+    {
+        out.group_size = readGroupSize();
+    }
+
+    if (in.length != -1)
+    {
+        out.length = in.length;
+    }
+    else
+    {
+        out.length = readLength();
+    }
+
+    if (in.max != -1)
+    {
+        out.max = in.max;
+    }
+    else
+    {
+        const int mode = readMode();
+        if (mode==DECIMAL)
+        {
+            out.max = readMax();
+        }
+        else
+        {
+            out.max = 2;
+        }
+
+    }
+    return out;
+}
+
+///
+/// @brief Starts the game and catches any exceptions thrown by it.
+void GameBuilder::run()
+{
+    using namespace std;
+    try
+    {
+        switch (data.group_size)
+        {
+            case 1:
+                single();
+                break;
+            case 2:
+                PA();
+                break;
+            case 3:
+                PAO();
+                break;
+        }
+    }
+    catch(bad_alloc &b)
+    {
+        clear();
+        cout << red << "Error:" << reset << endl
+             << "Could not allocate memory!" << endl << endl
+             << "Write something to continue:" << endl;
+        read();
+    }
+    catch(invalid_argument &i)
+    {
+        clear();
+        cout << red << "Error:" << reset << endl
+             << "Internal error!" << endl << endl
+             << "Write something to continue:" << endl;
+        read();
+    }
+}
+
+///
+/// @brief The function is responsible for starting the single numbers game.
+void GameBuilder::single() const
+{
+    auto * game = new Numbers<1>(data.length, data.max);
     game->memorization();
     game->wait();
     game->recall();
     game->wait();
     game->summary();
     delete game;
-    return 0;
 }
 
 ///
-/// @brief Constructor of GameBuilder class.
-GameBuilder::GameBuilder()
+/// @brief The function is responsible for starting the PA game.
+void GameBuilder::PA() const
 {
-    readMode();
-    readLength();
-
-    if (mode==decimal)
-    {
-        readMax();
-    }
-
-
-    //readGrouped();
-    if (grouped)
-    {
-        readGroupSize();
-    }
+    auto * game = new Numbers<2>(data.length, data.max);
+    game->memorization();
+    game->wait();
+    game->recall();
+    game->wait();
+    game->summary();
+    delete game;
 }
 
 ///
-/// @brief Constructor of GameBuilder class.
-/// @param max The maximum value that can appear in the array in the game.
-GameBuilder::GameBuilder(const int &max)
+/// @brief The function is responsible for starting the PAO game.
+void GameBuilder::PAO() const
 {
-    if (max<3)
-    {
-        this->max = 2;
-        mode = binary;
-    }else
-    {
-        this->max=max;
-        mode = decimal;
-    }
-
-    readLength();
-    //readGrouped();
-    if (grouped)
-    {
-        readGroupSize();
-    }
-}
-
-///
-/// @brief Constructor of GameBuilder class.
-/// @param max The maximum value that can appear in the array in the game.
-/// @param length Length of the array in the game.
-GameBuilder::GameBuilder(const int &max, const int &length):length(length)
-{
-    if (max<3)
-    {
-        this->max = 2;
-        mode = binary;
-    }else
-    {
-        this->max=max;
-        mode = decimal;
-    }
-
-    //readGrouped();
-    if (grouped)
-    {
-        readGroupSize();
-    }
+    auto * game = new Numbers<3>(data.length, data.max);
+    game->memorization();
+    game->wait();
+    game->recall();
+    game->wait();
+    game->summary();
+    delete game;
 }
