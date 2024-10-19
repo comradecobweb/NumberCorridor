@@ -27,21 +27,21 @@ void menu()
         clear();
 
         cout << endl << endl
-             << "\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << endl
+             << "\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << endl
              << "\t\t| " << magenta << "Number Corridor" << reset << " by " << yellow << "Comrade Cobweb"
-             << reset << "    |" << endl
-             << "\t\t|                                      |" << endl
-             << "\t\t| Version: " << red << "alpha" << reset << "                       |" << endl
-             << "\t\t| License: " << green << "Apache-2.0" << reset << "                  |" << endl
-             << "\t\t|                                      |" << endl
-             << "\t\t| " << blue << "https://github.com/comradecobweb" << reset << "     |" << endl
-             << "\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << endl << endl << endl
+             << reset << " |" << endl
+             << "\t\t|                                   |" << endl
+             << "\t\t| Version: " << red << "alpha" << reset << "                    |" << endl
+             << "\t\t| License: " << green << "Apache-2.0" << reset << "               |" << endl
+             << "\t\t|                                   |" << endl
+             << "\t\t| " << blue << " https://github.com/comradecobweb" << reset << " |" << endl
+             << "\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << endl << endl << endl
              << "Write " << cyan << 1 << reset << " to play standard game." << endl
              << "Write " << cyan << 2 << reset << " to play all-custom mode." << endl
              << "Write " << cyan << 3 << reset << " to play custom length decimal mode (with max value "
              << cyan << 10 << reset << ")." << endl
              << "Write " << cyan << 4 << reset << " to play custom length binary mode."<< endl
-             << "Write " << cyan << 5 << reset << " to exit." << endl;
+             << "Write " << cyan << 5 << reset << " to exit." << endl << endl;
 
 
         switch (read()) {
@@ -49,7 +49,7 @@ void menu()
                 debug();
                 break;
             case 1:
-                GameBuilder(10,7).run();
+                GameBuilder(10,7, 1).run();
                 break;
             case 2:
                 GameBuilder().run();
