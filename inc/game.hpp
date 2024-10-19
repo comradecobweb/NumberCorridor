@@ -8,6 +8,10 @@
 #include "array.hpp"
 
 
+///
+/// @brief Abstract game class.
+/// @tparam T Type of stored values.
+/// @tparam group_size Group size, 1 for single, 2 for PA, 3 for PAO.
 template <class T, size_t group_size = 1> class Game{
 
 private:

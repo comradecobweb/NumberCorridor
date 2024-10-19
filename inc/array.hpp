@@ -7,6 +7,10 @@
 #include <stdexcept>
 #include <climits>
 
+
+///
+/// @brief A class for storing numbers.
+/// @tparam T Type of data stored in the array.
 template <class T> class Array{
 
 private:
