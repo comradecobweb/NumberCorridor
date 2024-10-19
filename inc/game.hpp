@@ -31,7 +31,7 @@ protected:
     /// @return The result is calculated as a percentage.
     [[nodiscard]] inline float getScore(const int &wrong) const
     {
-        return (static_cast<float>(length) - static_cast<float>(wrong) * 100.0f / static_cast<float>(length));
+        return ((static_cast<float>(length) - static_cast<float>(wrong)) * 100.0f / static_cast<float>(length));
     }
 
     [[nodiscard]] inline float getTotalTime()const
