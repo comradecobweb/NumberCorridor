@@ -152,7 +152,13 @@ void menu()
 /// @brief This function is responsible for the help screen.
 void help()
 {
+    using namespace std;
 
+    cout
+    << endl
+    <<  magenta << "Number Corridor" << reset << " by: " << yellow << "Comrade Cobweb"<< reset << endl << endl <<endl
+    << "Use without arguments to play. For more information see:" << endl
+    <<  blue << "https://github.com/comradecobweb/NumberCorridor" << reset << endl;
 }
 
 ///
