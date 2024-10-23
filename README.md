@@ -22,13 +22,16 @@ To play a game, simply launch it. Also, if you want to skip the menu, you can us
 NumberCorridor <command>
 ```
 
-* `help`, `-help`, `-h`
+* `help`, `-help`, `--help`
 Displays the help screen.
 
-* `menu`, `-menu`
+* `version`, `-version`, `--version`
+Displays version.
+
+* `menu`, `-menu`, `--menu`
 Displays the menu screen.
 
-* `debug`, `-debug`
+* `debug`, `-debug`, `--debug`
 Displays the debug screen.
 
 ### Game options
@@ -40,17 +43,26 @@ NumberCorridor <command> <subcommand> [value] ...
 
 `play`, `-play`, `-p` Runs the game.
 
+
 ### Subcommands
 
 Subcommands are used to specify the `number of digits to remember`, the `max value` and the `group size`. If you don't 
 define them, you will be asked about them automatically.
 
-*  `max`, `-max`, `-m` `[value greater than 2]` specifies max value (The highest value to remember will be **max - 1**).
-*  `length`, `-length`, `-l` `[value greater than 0]` specifies the number of numbers to remember.
-*  `size`, `-size`, `-s` `[value greater than 0 and less than 4]` specifies group size.
-* `single`, `-single` sets group size to **1**.
-* `PA`, `-PA`, `pa`, `-pa` sets group size to **2**.
-* `PAO`, `-PAO`, `pao`, `-pao` sets group size to **3**.
+*  `max`, `-max`, `--max`, `-m`, `--m` `[value greater than 2]` specifies max value (The highest value to remember will
+be **max - 1**).
+
+    * `dex`, `-dec`, `--dec` sets max to **10**.
+    * `bin`, `-bin`, `--bin` sets max to **2**.
+
+
+*  `length`, `-length`, `--length`, `-l`, `--l` `[value greater than 0]` specifies the number of numbers to remember.
+
+
+*  `size`, `-size`, `--size`, `-s`, `--s` `[value greater than 0 and less than 4]` specifies group size.
+    * `single`, `-single`, `--single` sets group size to **1**.
+    * `PA`, `-PA`, `--PA`, `pa`, `-pa`, `--pa` sets group size to **2**.
+    * `PAO`, `-PAO`, `--PAO`, `pao`, `-pao`, `--pao` sets group size to **3**.
 
 
 ## Build

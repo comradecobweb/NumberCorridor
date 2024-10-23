@@ -10,6 +10,7 @@
 void menu();
 void debug();
 void help();
+void version();
 
 
 #endif //SCREENS_HPP

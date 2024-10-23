@@ -59,8 +59,8 @@ void debug()
 
     clear();
 
-    int clear_supported = system("clear");
-    int cls_supported = system("cls");
+    const int clear_supported = system("clear");
+    const int cls_supported = system("cls");
 
 
     clear();
@@ -120,4 +120,12 @@ void help()
     <<  magenta << "Number Corridor" << reset << " by: " << yellow << "Comrade Cobweb"<< reset << endl << endl <<endl
     << "Use without arguments to play. For more information see:" << endl
     <<  blue << "https://github.com/comradecobweb/NumberCorridor" << reset << endl;
+}
+
+///
+/// @brief This function is responsible for the version screen.
+void version()
+{
+    using namespace std;
+    cout <<endl << red << "alpha" << reset << endl;
 }
