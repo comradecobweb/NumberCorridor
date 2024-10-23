@@ -82,7 +82,6 @@
 
     int read();
     int read(colors color);
-    void debug();
 
 
 #endif //TERMINAL_HPP

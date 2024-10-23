@@ -28,12 +28,20 @@ typedef struct game_data
         return group_size != -1 && length != -1 && max != -1;
     }
 
-    /*
+    ///
+    /// @brief Checks if game_data fields have valid values.
+    /// @return True if yes, false if no.
     [[nodiscard]] inline bool isValid() const
     {
         return group_size > 0 && group_size < 4 && length > 0 && max > 1;
     }
-     */
+
+    void initialize();
+private:
+    static int readMode();
+    static int readLength();
+    static int readMax();
+    static int readGroupSize();
 
 } game_data;
 
@@ -42,12 +50,6 @@ typedef struct game_data
 class GameBuilder{
 
 private:
-    static int readMode();
-    static int readLength();
-    static int readMax();
-    static int readGroupSize();
-    static game_data getCompleteData(const game_data & in);
-
     void single() const;
     void PA() const;
     void PAO() const;
@@ -55,6 +57,7 @@ private:
     game_data data;
 public:
     explicit GameBuilder(const int & max = -1, const int & length = -1, const int &  group_size = -1);
+    explicit GameBuilder(const game_data & param_data);
     void run();
 };
 
