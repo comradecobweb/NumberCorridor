@@ -119,7 +119,7 @@ void help()
     << endl
     <<  magenta << "Number Corridor" << reset << " by: " << yellow << "Comrade Cobweb"<< reset << endl << endl <<endl
     << "Use without arguments to play. For more information see:" << endl
-    <<  blue << "https://github.com/comradecobweb/NumberCorridor" << reset << endl;
+    <<  blue << "https://github.com/comradecobweb/NumberCorridor" << reset << endl << endl;
 }
 
 ///
@@ -127,5 +127,5 @@ void help()
 void version()
 {
     using namespace std;
-    cout <<endl << red << "alpha" << reset << endl;
+    cout <<  magenta << "Number Corridor" << reset <<", version: " << red << "alpha" << reset << endl << endl;
 }
