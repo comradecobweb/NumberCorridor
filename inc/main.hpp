@@ -8,11 +8,10 @@
 #include "terminal.hpp"
 #include "numbers.hpp"
 #include "game_builder.hpp"
+#include "screens.hpp"
 
 
 int main(int argc, char **argv);
-static void menu();
-static void help();
 
 ///
 /// @brief Checks if the current element is the last element of an array of elements.
