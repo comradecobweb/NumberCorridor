@@ -3,4 +3,4 @@ cd ..
 cmake -S ./NumberCorridor -B ./NumberCorridor/build-linux
 cd ./NumberCorridor
 cmake --build ./build-linux --config Release
-chmod +x ./NumberCorridor
+chmod +x ./out/NumberCorridor
