@@ -1,4 +1,4 @@
 ./build.sh
-cp ./NumberCorridor ./DEBIAN
-dpkg-deb --build --nocheck ./ NumberCorridor.deb
-dpkg-deb --info ./NumberCorridor.deb
+cp ./out/NumberCorridor ./NumberCorridor/usr/bin
+dpkg-deb --build --nocheck ./NumberCorridor ./out/NumberCorridor.deb
+dpkg-deb --info ./out/NumberCorridor.deb
