@@ -1,9 +1,6 @@
 /.idea
-/NumberCorridor.exe
-/NumberCorridor
 /build-linux/
 /build-windows/
 /cmake-build-debug/
 /cmake-build-release/
-/DEBIAN/NumberCorridor
-/NumberCorridor.deb
+/out
