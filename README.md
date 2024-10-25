@@ -69,8 +69,8 @@ be **max - 1**).
 
 
 ***Warning:***
-For practical reasons, the executable file will be generated in the source code directory.
-To build this program you will need `git` and `cmake`.
+For practical reasons, the executable file will be generated in the ***out*** directory.
+To clone and build this program you will need `git` and `Cmake`.
 
 First, open the terminal and clone this repository:
 
@@ -81,7 +81,7 @@ First, open the terminal and clone this repository:
 ### Linux:
 
 
-Make sure you have installed `cmake`, `gcc`, `g++`, `ld` and `make`.
+Make sure you have installed `gcc`, `g++`, `ld` and `make`.
 Then run `build.sh` file:
 
 ```shell
@@ -90,7 +90,22 @@ chmod +x ./build.sh
 ./build.sh
 ```
 
-Now, you can run the app using `./NumberCorridor`.
+Now, you can run the app using `./out/NumberCorridor`.
+
+
+### Debian Package
+
+
+To build the Debian package, make sure you meet the requirements of the step above. Then type in the terminal:
+
+```sh
+cd ./NumberCorridor
+chmod +x ./build_deb.sh
+./build_deb.sh
+```
+
+With this you have generated the `NumberCorridor.deb` file (in the ***out*** folder) for `amd64`. You can install it like
+a regular `*.deb` file.
 
 
 ### Windows:
@@ -103,7 +118,7 @@ cd .\NumberCorridor
 build.bat
 ```
 
-Now, you can run the app using `NumberCorridor.exe`.
+Now, you can run the app using `.\out\NumberCorridor.exe`.
 
 
 ### Other OS:
