@@ -21,4 +21,4 @@ add_executable(NumberCorridor
 include_directories(${CMAKE_SOURCE_DIR}/inc/)
 
 
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR})
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/out)

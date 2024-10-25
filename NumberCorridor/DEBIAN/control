@@ -1,0 +1,7 @@
+Package: NumberCorridor
+Version: 0.2
+Maintainer: Comrade Cobweb <comradecobweb@proton.me>
+Architecture: amd64
+Section: games
+Priority: optional
+Description: Memory training console program
