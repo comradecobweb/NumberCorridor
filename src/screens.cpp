@@ -22,13 +22,15 @@ void menu()
              << "\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << endl << endl << endl
              << "Write " << cyan << 1 << reset << " to play standard game." << endl
              << "Write " << cyan << 2 << reset << " to play all-custom mode." << endl
-             << "Write " << cyan << 3 << reset << " to play custom length decimal mode (with max value "
-             << cyan << 10 << reset << ")." << endl
-             << "Write " << cyan << 4 << reset << " to play custom length binary mode."<< endl
-             << "Write " << cyan << 5 << reset << " to exit." << endl << endl;
+             << "Write " << cyan << 3 << reset << " to play custom length single mode." << endl
+             << "Write " << cyan << 4 << reset << " to play custom length PA mode." << endl
+             << "Write " << cyan << 5 << reset << " to play custom length PAO mode." << endl
+             << "Write " << cyan << 6 << reset << " to play custom binary mode."<< endl
+             << "Write " << cyan << 7 << reset << " to exit." << endl << endl;
 
 
-        switch (read()) {
+        switch (read())
+        {
             case 0:
                 debug();
                 break;
@@ -39,12 +41,18 @@ void menu()
                 GameBuilder().run();
                 break;
             case 3:
-                GameBuilder(10).run();
+                GameBuilder(10, -1, 1).run();
                 break;
             case 4:
-                GameBuilder(2).run();
+                GameBuilder(10, -1, 2).run();
                 break;
             case 5:
+                GameBuilder(10, -1, 3).run();
+                break;
+            case 6:
+                GameBuilder(2).run();
+                break;
+            case 7:
                 clear();
                 exit(0);
         }

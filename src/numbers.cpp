@@ -19,7 +19,14 @@ void Numbers::see(int &index)
 
             if (index != this->length)
             {
-                cout << "Write " << cyan << 1 << reset << " to see next." << endl;
+                if (index == this->length-1)
+                {
+                    cout << "Write " << cyan << 1 << reset << " to continue." << endl;
+                }
+                else
+                {
+                    cout << "Write " << cyan << 1 << reset << " to see next." << endl;
+                }
             }
             if (index != 0)
             {
@@ -59,7 +66,14 @@ void Numbers::see(int &index)
 
             if (index != this->length)
             {
-                cout << "Write " << cyan << 1 << reset << " to see next." << endl;
+                if (index == this->length-1)
+                {
+                    cout << "Write " << cyan << 1 << reset << " to continue." << endl;
+                }
+                else
+                {
+                    cout << "Write " << cyan << 1 << reset << " to see next." << endl;
+                }
             }
             if (index != 0)
             {
@@ -188,6 +202,12 @@ void Numbers::summary()
             << "\t" << green << this->questions -> get(i) << reset << endl;
             wrong++;
         }
+
+        if (group_size != 1 && (i+1) % group_size == 0 && i!= this->length-1)
+        {
+            cout << endl;
+        }
+
     }
 
     float score = this->getScore(wrong);

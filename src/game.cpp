@@ -115,6 +115,7 @@ void Game<T>::wait()
                     break;
 
                 case 4:
+                    clear();
                     exit(0);
 
             }
@@ -126,7 +127,7 @@ void Game<T>::wait()
         {
             clear();
             cout << blue << "Waiting..." << reset << endl << endl
-                << "Write " << cyan << 1 << reset << " to continue." << endl
+                << "Write " << cyan << 1 << reset << " to go to the recall screen." << endl
                 << "Write " << cyan << 2 << reset << " to return to the memorize screen." << endl
                 << "Write " << cyan << 3 << reset << " to exit the app. " << endl;
 
@@ -139,6 +140,7 @@ void Game<T>::wait()
                     memorization();
                     break;
                 case 3:
+                    clear();
                     exit(0);
             }
         }
