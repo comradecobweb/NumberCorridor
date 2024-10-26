@@ -33,7 +33,7 @@ typedef struct game_data
     /// @return True if yes, false if no.
     [[nodiscard]] inline bool isValid() const
     {
-        return group_size > 0 && group_size < 4 && length > 0 && max > 1;
+        return group_size > 0 && length > 0 && max > 1;
     }
 
     void initialize();
@@ -50,15 +50,12 @@ private:
 class GameBuilder{
 
 private:
-    void single() const;
-    void PA() const;
-    void PAO() const;
 
     game_data data;
 public:
-    explicit GameBuilder(const int & max = -1, const int & length = -1, const int &  group_size = -1);
+    explicit GameBuilder(const int & max = -1, const int & length = -1, const int & group_size = -1);
     explicit GameBuilder(const game_data & param_data);
-    void run();
+    void run() const;
 };
 
 
