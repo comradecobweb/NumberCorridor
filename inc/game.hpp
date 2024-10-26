@@ -11,8 +11,7 @@
 ///
 /// @brief Abstract game class.
 /// @tparam T Type of stored values.
-/// @tparam group_size Group size, 1 for single, 2 for PA, 3 for PAO.
-template <class T, size_t group_size = 1> class Game{
+template <class T> class Game{
 
 private:
     bool finished;
@@ -21,6 +20,7 @@ private:
 
 protected:
     const int length;
+    const size_t group_size;
 
     Array<T> * questions;
     Array<T> * answers;
@@ -80,8 +80,8 @@ public:
 
     virtual void summary() = 0;
 
-    inline explicit Game(const int &length):
-    finished(false), length(length), memorization_time(0.0f),recall_time(0.0f)
+    inline explicit Game(const int &length, size_t group_size = 1):
+    finished(false), length(length), group_size(group_size), memorization_time(0.0f),recall_time(0.0f)
     {
         questions = new Array<T>(length, group_size);
         answers = new Array<T>(length, group_size);

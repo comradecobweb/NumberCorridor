@@ -3,8 +3,8 @@
 
 ///
 /// @brief This function is responsible for the memorization screen.
-template <class T, size_t group_size>
-void Game<T, group_size>::memorization()
+template <class T>
+void Game<T>::memorization()
 {
     using namespace std::chrono;
     auto start = high_resolution_clock::now();
@@ -21,8 +21,8 @@ void Game<T, group_size>::memorization()
 
 ///
 /// @brief This function is responsible for the recall screen.
-template <class T, size_t group_size>
-void Game<T, group_size>::recall()
+template <class T>
+void Game<T>::recall()
 {
     using namespace std::chrono;
     auto start = high_resolution_clock::now();
@@ -41,8 +41,8 @@ void Game<T, group_size>::recall()
 ///
 /// @brief Counts groups.
 /// @return Number of groups.
-template <class T, size_t group_size>
-int Game<T, group_size>::countGroups() const
+template <class T>
+int Game<T>::countGroups() const
 {
     if (length % group_size != 0)
     {
@@ -58,8 +58,8 @@ int Game<T, group_size>::countGroups() const
 /// @brief Calculates the group size (taking into account any irregular size of the last group).
 /// @param group_index Index of a group in the Array.
 /// @return Group size.
-template <class T, size_t group_size>
-int Game<T, group_size>::getGroupSize(const int &group_index) const
+template <class T>
+int Game<T>::getGroupSize(const int &group_index) const
 {
     if (group_index==countGroups() - 1)
     {
@@ -85,8 +85,8 @@ int Game<T, group_size>::getGroupSize(const int &group_index) const
 ///
 /// This screen appears between the remember and recall screens, and after the recall screen.
 /// It has 2 versions depending on when it appears.
-template <class T, size_t group_size>
-void Game<T, group_size>::wait()
+template <class T>
+void Game<T>::wait()
 {
     using namespace std;
     bool b = true;
@@ -145,6 +145,4 @@ void Game<T, group_size>::wait()
     }
 }
 
-template class Game<int, 1>;
-template class Game<int, 2>;
-template class Game<int, 3>;
+template class Game<int>;
