@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
     using namespace std;
     if(argc > 1)
     {
-        string s(argv[1]);
+        const string s(argv[1]);
 
         if ((s=="help" || s=="-help" || s=="--help") && isLast(1,argc))
         {
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
             game_data data;
             for (int i = 2; i < argc; ++i)
             {
-                string param(argv[i]);
+                const string param(argv[i]);
 
                 if (param=="max" || param=="-max" || param=="--max" || param=="-m" || param=="--m")
                 {
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
                         cout << red << "Error!\t" << reset << "Duplicate argument: max"  << endl << endl;
                         return -1;
                     }
-                    int max = getNextValue(i, argc, argv);
+                    const int max = getNextValue(i, argc, argv);
                     if (max < 2)
                     {
                         cout << red << "Error!\t" << reset << "Invalid/undefined max value!"  << endl << endl;
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
                         cout << red << "Error!\t" << reset << "Duplicate argument: length"  << endl << endl;
                         return -1;
                     }
-                    int length = getNextValue(i, argc, argv);
+                    const int length = getNextValue(i, argc, argv);
                     if (length < 1)
                     {
                         cout << red << "Error!\t" << reset << "Invalid/undefined length value!" << endl << endl;
@@ -91,8 +91,8 @@ int main(int argc, char *argv[])
                         cout << red << "Error!\t" << reset << "Duplicate argument: size"  << endl << endl;
                         return -1;
                     }
-                    int size = getNextValue(i, argc, argv);
-                    if (size < 1 || size > 3)
+                    const int size = getNextValue(i, argc, argv);
+                    if (size < 1)
                     {
                         cout << red << "Error!\t" << reset << "Invalid/undefined size value!" << endl << endl;
                         return -1;
@@ -164,7 +164,7 @@ int getNextValue(int &index, const int &argc, char *argv[])
     if (isLast(index, argc)) return -1;
     ++index;
 
-    string s(argv[index]);
+    const string s(argv[index]);
 
     if (!is_number(s)) return -1;
     int i;
