@@ -80,6 +80,7 @@
         return os;
     }
 
+    int to_int(const std::string &s);
     int read();
     int read(colors color);
 

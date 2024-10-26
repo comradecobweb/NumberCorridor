@@ -2,6 +2,28 @@
 
 
 ///
+/// @brief Converts string to int.
+/// @param s String to convert.
+/// @return Converted value or -1 if string is invalid.
+int to_int(const std::string &s)
+{
+    using namespace std;
+
+    if (!is_number(s)) return -1;
+
+    int i;
+    stringstream stream;
+
+    stream << s;
+    stream >> i;
+
+    if (i == INT_MAX || i == INT_MIN) return -1;
+    if (i < 0) return -1;
+
+    return i;
+}
+
+///
 /// @brief This function is used to read single numbers from the user.
 /// @return The loaded number or -1 if an invalid value is entered (e.g. letter).
 int read()
@@ -16,18 +38,7 @@ int read()
 
     getline(cin, input);
 
-    if (!is_number(input)) return -1;
-
-
-    stringstream stream;
-
-    stream << input;
-    stream >> i;
-
-    if (i == INT_MAX || i == INT_MIN) return -1;
-
-
-    return i;
+    return to_int(input);
 }
 
 ///
@@ -48,16 +59,5 @@ int read(colors color)
 
     cout << reset;
 
-    if (!is_number(input)) return -1;
-
-
-    stringstream stream;
-
-    stream << input;
-    stream >> i;
-
-    if (i == INT_MAX || i == INT_MIN) return -1;
-
-
-    return i;
+    return to_int(input);
 }

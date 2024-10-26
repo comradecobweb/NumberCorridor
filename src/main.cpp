@@ -164,13 +164,5 @@ int getNextValue(int &index, const int &argc, char *argv[])
     if (isLast(index, argc)) return -1;
     ++index;
 
-    const string s(argv[index]);
-
-    if (!is_number(s)) return -1;
-    int i;
-    stringstream stream;
-
-    stream << s;
-    stream >> i;
-    return i;
+    return to_int(argv[index]);
 }
