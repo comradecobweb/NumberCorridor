@@ -13,8 +13,7 @@ Array<T>::Array(const int &length, const size_t &group_size):length(length), gro
     if (length <= 0) throw std::invalid_argument("Array length must be greater than 0!");
     if (group_size == 0) throw std::invalid_argument("group_size in Array must be greater than 0!");
 
-
-    array_data = (T *)malloc(sizeof(array_data)*length);
+    array_data = (T *) malloc(sizeof(array_data) * length);
     if (!array_data)
     {
         throw std::bad_alloc();
@@ -34,7 +33,7 @@ T Array<T>::get(const int &index) const
     }
     else
     {
-        return (T)-1;
+        return (T) -1;
     }
 }
 
@@ -51,7 +50,7 @@ T *Array<T>::getGroup(const int &group_index) const
 
     if (!validateGroupIndex(group_index)) throw std::invalid_argument("Invalid group_index!");
 
-    T * array =(T *) malloc(sizeof(T)*group_size);
+    T *array = (T *) malloc(sizeof(T) * group_size);
 
     if (!array) throw std::bad_alloc();
 
@@ -110,7 +109,7 @@ bool Array<int>::set(const int &index, int value)
 /// @param index Position of an group in the array.
 /// @param values The values that will be inserted into the array.
 /// @return True on success, false on invalid index.
-template<class T>
+template <class T>
 bool Array<T>::set(const int &group_index, T *values)
 {
     if (validateGroupIndex(group_index))
@@ -130,4 +129,5 @@ bool Array<T>::set(const int &group_index, T *values)
     }
 }
 
-template class Array<int>;
+template
+class Array<int>;

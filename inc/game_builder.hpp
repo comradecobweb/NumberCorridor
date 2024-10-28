@@ -11,7 +11,6 @@
 
 #define DECIMAL 1
 
-
 ///
 /// @brief A structure containing the data of the GameBuilder class.
 typedef struct game_data
@@ -37,26 +36,32 @@ typedef struct game_data
     }
 
     void initialize();
+
 private:
     static int readMode();
+
     static int readLength();
+
     static int readMax();
+
     static int readGroupSize();
 
 } game_data;
 
 ///
 /// @brief This class is used for run the game.
-class GameBuilder{
+class GameBuilder
+{
 
 private:
 
     game_data data;
 public:
-    explicit GameBuilder(const int & max = -1, const int & length = -1, const int & group_size = -1);
-    explicit GameBuilder(const game_data & param_data);
+    explicit GameBuilder(const int &max = -1, const int &length = -1, const int &group_size = -1);
+
+    explicit GameBuilder(const game_data &param_data);
+
     void run() const;
 };
-
 
 #endif //GAME_BUILDER_HPP

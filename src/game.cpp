@@ -46,11 +46,11 @@ int Game<T>::countGroups() const
 {
     if (length % group_size != 0)
     {
-        return length/group_size + 1;
+        return length / group_size + 1;
     }
     else
     {
-        return length/group_size;
+        return length / group_size;
     }
 }
 
@@ -61,11 +61,11 @@ int Game<T>::countGroups() const
 template <class T>
 int Game<T>::getGroupSize(const int &group_index) const
 {
-    if (group_index==countGroups() - 1)
+    if (group_index == countGroups() - 1)
     {
         const int remainder = length % group_size;
 
-        if (remainder==0)
+        if (remainder == 0)
         {
             return group_size;
         }
@@ -97,7 +97,7 @@ void Game<T>::wait()
         {
             clear();
             cout << blue << "Waiting..." << reset << endl << endl
-                << "Write " << cyan << 1 << reset << " to continue." << endl
+                 << "Write " << cyan << 1 << reset << " to continue." << endl
                  << "Write " << cyan << 2 << reset << " to return to the memorize screen." << endl
                  << "Write " << cyan << 3 << reset << " to return to the recall screen." << endl
                  << "Write " << cyan << 4 << reset << " to exit the app. " << endl;
@@ -127,9 +127,9 @@ void Game<T>::wait()
         {
             clear();
             cout << blue << "Waiting..." << reset << endl << endl
-                << "Write " << cyan << 1 << reset << " to go to the recall screen." << endl
-                << "Write " << cyan << 2 << reset << " to return to the memorize screen." << endl
-                << "Write " << cyan << 3 << reset << " to exit the app. " << endl;
+                 << "Write " << cyan << 1 << reset << " to go to the recall screen." << endl
+                 << "Write " << cyan << 2 << reset << " to return to the memorize screen." << endl
+                 << "Write " << cyan << 3 << reset << " to exit the app. " << endl;
 
             switch (read())
             {
@@ -147,4 +147,5 @@ void Game<T>::wait()
     }
 }
 
-template class Game<int>;
+template
+class Game<int>;

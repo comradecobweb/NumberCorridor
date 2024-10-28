@@ -11,10 +11,10 @@ int game_data::readMode()
     while (true)
     {
         clear();
-        cout << "Write " << cyan << 1 << reset << " to memorize decimal numbers."<< endl;
-        cout << "Write " << cyan << 2 << reset << " to memorize binary numbers."<< endl;
+        cout << "Write " << cyan << 1 << reset << " to memorize decimal numbers." << endl;
+        cout << "Write " << cyan << 2 << reset << " to memorize binary numbers." << endl;
         answer = read();
-        if (answer==1 || answer==2)
+        if (answer == 1 || answer == 2)
         {
             return answer;
         }
@@ -82,7 +82,7 @@ int game_data::readGroupSize()
 /// @brief Undefined values in game_data (-1) are set to user-supplied values.
 void game_data::initialize()
 {
-    if(group_size == -1)
+    if (group_size == -1)
     {
         group_size = readGroupSize();
     }
@@ -95,7 +95,7 @@ void game_data::initialize()
     if (max == -1)
     {
         const int mode = readMode();
-        if (mode==DECIMAL)
+        if (mode == DECIMAL)
         {
             max = readMax();
         }
@@ -128,9 +128,9 @@ GameBuilder::GameBuilder(const int &max, const int &length, const int &group_siz
 /// @throws std::invalid_argument If max, length, or group_size in param_data are incorrect.
 GameBuilder::GameBuilder(const game_data &param_data)
 {
-    data.length=param_data.length;
-    data.max=param_data.max;
-    data.group_size=param_data.group_size;
+    data.length = param_data.length;
+    data.max = param_data.max;
+    data.group_size = param_data.group_size;
     if (!data.isInitialized()) data.initialize();
     if (!data.isValid()) throw std::invalid_argument("Invalid GameBuilder parameters!");
 }
@@ -140,7 +140,7 @@ GameBuilder::GameBuilder(const game_data &param_data)
 void GameBuilder::run() const
 {
     using namespace std;
-    Game<int> * game;
+    Game<int> *game;
     try
     {
         game = new Numbers(data.length, data.max, data.group_size);
@@ -150,13 +150,13 @@ void GameBuilder::run() const
         game->wait();
         game->summary();
     }
-    catch(bad_alloc &b)
+    catch (bad_alloc &b)
     {
         clear();
         cout << red << "Error!\t" << reset << "Could not allocate memory!" << endl << endl;
         exit(-1);
     }
-    catch(invalid_argument &i)
+    catch (invalid_argument &i)
     {
         clear();
         cout << red << "Error!\t" << reset << "Internal error!" << endl << endl;
