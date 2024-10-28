@@ -11,15 +11,14 @@ int game_data::readMode()
     while (true)
     {
         clear();
-        cout << "Write " << cyan << 1 << reset << " to memorize decimal numbers."<< endl;
-        cout << "Write " << cyan << 2 << reset << " to memorize binary numbers."<< endl;
+        cout << "Write " << cyan << 1 << reset << " to memorize decimal numbers." << endl;
+        cout << "Write " << cyan << 2 << reset << " to memorize binary numbers." << endl;
         answer = read();
-        if (answer==1 || answer==2)
+        if (answer == 1 || answer == 2)
         {
-            break;
+            return answer;
         }
     }
-    return answer;
 }
 
 ///
@@ -32,14 +31,13 @@ int game_data::readLength()
     while (true)
     {
         clear();
-        cout << "Write how many numbers do you want to remember (minimal is 1, max is 100000): " << endl;
+        cout << "Write how many numbers do you want to remember (minimal is 1): " << endl;
         answer = read();
-        if (answer > 0 && answer < 100001)
+        if (answer > 0)
         {
-            break;
+            return answer;
         }
     }
-    return answer;
 }
 
 ///
@@ -54,12 +52,11 @@ int game_data::readMax()
         clear();
         cout << "Write max number do you want to remember (minimal is 2): " << endl;
         answer = read();
-        if (answer > 2 && answer != INT_MAX)
+        if (answer >= 2)
         {
-            break;
+            return answer;
         }
     }
-    return answer;
 }
 
 ///
@@ -72,11 +69,9 @@ int game_data::readGroupSize()
     while (true)
     {
         clear();
-        cout << "Write " << cyan << 1 << reset << " to memorize single numbers." << endl
-             << "Write " << cyan << 2 << reset << " to memorize using PA." << endl
-             << "Write " << cyan << 3 << reset << " to memorize using PAO." << endl;
+        cout << "Write the size of the group of numbers (minimal is 1): " << endl;
         answer = read();
-        if (answer == 1 || answer == 2 || answer == 3)
+        if (answer >= 1)
         {
             return answer;
         }
@@ -87,7 +82,7 @@ int game_data::readGroupSize()
 /// @brief Undefined values in game_data (-1) are set to user-supplied values.
 void game_data::initialize()
 {
-    if(group_size == -1)
+    if (group_size == -1)
     {
         group_size = readGroupSize();
     }
@@ -100,7 +95,7 @@ void game_data::initialize()
     if (max == -1)
     {
         const int mode = readMode();
-        if (mode==DECIMAL)
+        if (mode == DECIMAL)
         {
             max = readMax();
         }
@@ -116,7 +111,7 @@ void game_data::initialize()
 /// @brief Constructor of the GameBuilder class.
 /// @param max Upper limit of generated numbers.
 /// @param length Number of numbers to remember.
-/// @param group_size 1, 2, or 3 for single, PA and PAO games respectively.
+/// @param group_size Number group size.
 /// @throws std::invalid_argument If max, length, or group_size are incorrect.
 GameBuilder::GameBuilder(const int &max, const int &length, const int &group_size)
 {
@@ -133,84 +128,40 @@ GameBuilder::GameBuilder(const int &max, const int &length, const int &group_siz
 /// @throws std::invalid_argument If max, length, or group_size in param_data are incorrect.
 GameBuilder::GameBuilder(const game_data &param_data)
 {
-    data.length=param_data.length;
-    data.max=param_data.max;
-    data.group_size=param_data.group_size;
+    data.length = param_data.length;
+    data.max = param_data.max;
+    data.group_size = param_data.group_size;
     if (!data.isInitialized()) data.initialize();
     if (!data.isValid()) throw std::invalid_argument("Invalid GameBuilder parameters!");
 }
 
 ///
 /// @brief Starts the game and catches any exceptions thrown by it.
-void GameBuilder::run()
+void GameBuilder::run() const
 {
     using namespace std;
+    Game<int> *game;
     try
     {
-        switch (data.group_size)
-        {
-            case 1:
-                single();
-                break;
-            case 2:
-                PA();
-                break;
-            case 3:
-                PAO();
-                break;
-        }
+        game = new Numbers(data.length, data.max, data.group_size);
+        game->memorization();
+        game->wait();
+        game->recall();
+        game->wait();
+        game->summary();
     }
-    catch(bad_alloc &b)
+    catch (bad_alloc &b)
     {
         clear();
-        cout << red << "Error:" << reset << endl
-             << "Could not allocate memory!" << endl << endl;
+        cout << red << "Error!\t" << reset << "Could not allocate memory!" << endl << endl;
         exit(-1);
     }
-    catch(invalid_argument &i)
+    catch (invalid_argument &i)
     {
         clear();
-        cout << red << "Error:" << reset << endl
-             << "Internal error!" << endl << endl;
+        cout << red << "Error!\t" << reset << "Internal error!" << endl << endl;
         exit(-1);
     }
-}
 
-///
-/// @brief The function is responsible for starting the single numbers game.
-void GameBuilder::single() const
-{
-    auto * game = new Numbers<1>(data.length, data.max);
-    game->memorization();
-    game->wait();
-    game->recall();
-    game->wait();
-    game->summary();
-    delete game;
-}
-
-///
-/// @brief The function is responsible for starting the PA game.
-void GameBuilder::PA() const
-{
-    auto * game = new Numbers<2>(data.length, data.max);
-    game->memorization();
-    game->wait();
-    game->recall();
-    game->wait();
-    game->summary();
-    delete game;
-}
-
-///
-/// @brief The function is responsible for starting the PAO game.
-void GameBuilder::PAO() const
-{
-    auto * game = new Numbers<3>(data.length, data.max);
-    game->memorization();
-    game->wait();
-    game->recall();
-    game->wait();
-    game->summary();
     delete game;
 }

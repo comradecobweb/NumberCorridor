@@ -1,13 +1,14 @@
 #include "screens.hpp"
 
+
 ///
 /// @brief This function is responsible for the menu screen.
 void menu()
 {
     using namespace std;
 
-
-    while (true) {
+    while (true)
+    {
         clear();
 
         cout << endl << endl
@@ -15,36 +16,43 @@ void menu()
              << "\t\t| " << magenta << "Number Corridor" << reset << " by " << yellow << "Comrade Cobweb"
              << reset << " |" << endl
              << "\t\t|                                   |" << endl
-             << "\t\t| Version: " << red << "alpha" << reset << "                    |" << endl
+             << "\t\t| Version: " << red << get_version() << reset << "                    |" << endl
              << "\t\t| License: " << green << "Apache-2.0" << reset << "               |" << endl
              << "\t\t|                                   |" << endl
              << "\t\t| " << blue << " https://github.com/comradecobweb" << reset << " |" << endl
              << "\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << endl << endl << endl
              << "Write " << cyan << 1 << reset << " to play standard game." << endl
              << "Write " << cyan << 2 << reset << " to play all-custom mode." << endl
-             << "Write " << cyan << 3 << reset << " to play custom length decimal mode (with max value "
-             << cyan << 10 << reset << ")." << endl
-             << "Write " << cyan << 4 << reset << " to play custom length binary mode."<< endl
-             << "Write " << cyan << 5 << reset << " to exit." << endl << endl;
+             << "Write " << cyan << 3 << reset << " to play custom length single mode." << endl
+             << "Write " << cyan << 4 << reset << " to play custom length PA mode." << endl
+             << "Write " << cyan << 5 << reset << " to play custom length PAO mode." << endl
+             << "Write " << cyan << 6 << reset << " to play custom binary mode." << endl
+             << "Write " << cyan << 7 << reset << " to exit." << endl << endl;
 
-
-        switch (read()) {
+        switch (read())
+        {
             case 0:
                 debug();
                 break;
             case 1:
-                GameBuilder(10,7, 1).run();
+                GameBuilder(10, 7, 1).run();
                 break;
             case 2:
                 GameBuilder().run();
                 break;
             case 3:
-                GameBuilder(10).run();
+                GameBuilder(10, -1, 1).run();
                 break;
             case 4:
-                GameBuilder(2).run();
+                GameBuilder(10, -1, 2).run();
                 break;
             case 5:
+                GameBuilder(10, -1, 3).run();
+                break;
+            case 6:
+                GameBuilder(2).run();
+                break;
+            case 7:
                 clear();
                 exit(0);
         }
@@ -62,11 +70,9 @@ void debug()
     const int clear_supported = system("clear");
     const int cls_supported = system("cls");
 
-
     clear();
 
     cout << "Welcome in secret debug screen!" << endl << endl
-
 
          << "Color test:" << endl << endl
          << red << "red:     \tHello, World!" << reset << endl
@@ -83,7 +89,8 @@ void debug()
     if (cls_supported)
     {
         cout << red << "\tNO" << reset;
-    } else
+    }
+    else
     {
         cout << green << "\tYES" << reset;
     }
@@ -93,7 +100,8 @@ void debug()
     if (clear_supported)
     {
         cout << red << "\tNO" << reset;
-    } else
+    }
+    else
     {
         cout << green << "\tYES" << reset;
     }
@@ -116,10 +124,11 @@ void help()
     using namespace std;
 
     cout
-    << endl
-    <<  magenta << "Number Corridor" << reset << " by: " << yellow << "Comrade Cobweb"<< reset << endl << endl <<endl
-    << "Use without arguments to play. For more information see:" << endl
-    <<  blue << "https://github.com/comradecobweb/NumberCorridor" << reset << endl << endl;
+            << endl
+            << magenta << "Number Corridor" << reset << " by: " << yellow << "Comrade Cobweb" << reset << endl << endl
+            << endl
+            << "Use without arguments to play. For more information see:" << endl
+            << blue << "https://github.com/comradecobweb/NumberCorridor" << reset << endl << endl;
 }
 
 ///
@@ -127,5 +136,5 @@ void help()
 void version()
 {
     using namespace std;
-    cout <<  magenta << "Number Corridor" << reset <<", version: " << red << "alpha" << reset << endl << endl;
+    cout << magenta << "Number Corridor" << reset << ", version: " << red << get_version() << reset << endl << endl;
 }

@@ -41,7 +41,7 @@ NumberCorridor <command> <subcommand> [value] ...
 ```
 
 
-`play`, `-play`, `-p` Runs the game.
+`play`, `-play`, `--play`, `-p`, `--p` Runs the game.
 
 
 ### Subcommands
@@ -59,7 +59,7 @@ be **max - 1**).
 *  `length`, `-length`, `--length`, `-l`, `--l` `[value greater than 0]` specifies the number of numbers to remember.
 
 
-*  `size`, `-size`, `--size`, `-s`, `--s` `[value greater than 0 and less than 4]` specifies group size.
+*  `size`, `-size`, `--size`, `-s`, `--s` `[value greater than 0]` specifies group size.
     * `single`, `-single`, `--single` sets group size to **1**.
     * `PA`, `-PA`, `--PA`, `pa`, `-pa`, `--pa` sets group size to **2**.
     * `PAO`, `-PAO`, `--PAO`, `pao`, `-pao`, `--pao` sets group size to **3**.
@@ -130,5 +130,4 @@ Systems other than those mentioned above are not supported.
 ## To do
 
 
-- Add the ability to check random numbers instead of all numbers one by one.
 - Add support for macOS.
