@@ -16,7 +16,7 @@ void menu()
              << "\t\t| " << magenta << "Number Corridor" << reset << " by " << yellow << "Comrade Cobweb"
              << reset << " |" << endl
              << "\t\t|                                   |" << endl
-             << "\t\t| Version: " << red << "alpha" << reset << "                    |" << endl
+             << "\t\t| Version: " << red << get_version() << reset << "                    |" << endl
              << "\t\t| License: " << green << "Apache-2.0" << reset << "               |" << endl
              << "\t\t|                                   |" << endl
              << "\t\t| " << blue << " https://github.com/comradecobweb" << reset << " |" << endl
@@ -136,5 +136,5 @@ void help()
 void version()
 {
     using namespace std;
-    cout << magenta << "Number Corridor" << reset << ", version: " << red << "alpha" << reset << endl << endl;
+    cout << magenta << "Number Corridor" << reset << ", version: " << red << get_version() << reset << endl << endl;
 }
