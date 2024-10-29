@@ -5,6 +5,7 @@
 
 #include "terminal.hpp"
 #include "game.hpp"
+#include <random>
 
 
 ///
@@ -31,11 +32,15 @@ public:
     inline Numbers(const int &length, const int &max, const size_t &group_size = 1) :
             Game<int>(length, group_size), max(max)
     {
-        srand(time(nullptr));
+        using namespace std;
+        random_device rd;
+        mt19937 mt(rd());
+        std::uniform_int_distribution<std::mt19937::result_type> generate(0, max - 1);
+
         for (int i = 0; i < length; ++i)
         {
             this->answers->set(i, 0);
-            this->questions->set(i, rand() % max + 0);
+            this->questions->set(i, (int) generate(mt));
         }
     }
 
