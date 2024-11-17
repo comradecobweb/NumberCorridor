@@ -1,0 +1,13 @@
+name: numbercorridor
+version: '0.0.2'
+summary: Memory training console program
+description: |
+  A console program for memory training written in C++. The goal of this project is to provide a free alternative to 
+  the well-known website. Currently, it only allows you to remember numbers.
+confinement: strict
+base: core20
+parts:
+  numbercorridor:
+    source: https://github.com/comradecobweb/NumberCorridor.git
+    plugin: cmake
+      - -DCMAKE_INSTALL_PREFIX=/usr/bin
