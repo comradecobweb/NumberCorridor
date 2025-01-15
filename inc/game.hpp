@@ -1,6 +1,6 @@
 #pragma once
-#ifndef BASE_GAME_HPP
-#define BASE_GAME_HPP
+#ifndef GAME_HPP
+#define GAME_HPP
 
 
 #include <chrono>
@@ -86,4 +86,4 @@ public:
     };
 };
 
-#endif //BASE_GAME_HPP
+#endif //GAME_HPP

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef GAME_HPP
-#define GAME_HPP
+#ifndef NUMBERS_HPP
+#define NUMBERS_HPP
 
 
 #include "terminal.hpp"
@@ -40,4 +40,4 @@ public:
     ~Numbers() override = default;
 };
 
-#endif //GAME_HPP
+#endif //NUMBERS_HPP
