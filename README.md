@@ -52,7 +52,7 @@ define them, you will be asked about them automatically.
 *  `max`, `-max`, `--max`, `-m`, `--m` `[value greater than 2]` specifies max value (The highest value to remember will
 be **max - 1**).
 
-    * `dex`, `-dec`, `--dec` sets max to **10**.
+    * `dec`, `-dec`, `--dec` sets max to **10**.
     * `bin`, `-bin`, `--bin` sets max to **2**.
 
 
