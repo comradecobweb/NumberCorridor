@@ -3,14 +3,11 @@
 
 ///
 /// @brief This function is responsible for the menu screen.
-void menu()
-{
+void menu() {
     using namespace std;
 
-    while (true)
-    {
+    while (true) {
         clear();
-
         cout << endl << endl
              << "\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << endl
              << "\t\t| " << magenta << "Number Corridor" << reset << " by " << yellow << "Comrade Cobweb"
@@ -28,9 +25,7 @@ void menu()
              << "Write " << cyan << 5 << reset << " to play custom length PAO mode." << endl
              << "Write " << cyan << 6 << reset << " to play custom binary mode." << endl
              << "Write " << cyan << 7 << reset << " to exit." << endl << endl;
-
-        switch (read())
-        {
+        switch (read()) {
             case 0:
                 debug();
                 break;
@@ -61,19 +56,15 @@ void menu()
 
 ///
 /// @brief This function is responsible for the debug screen.
-void debug()
-{
+void debug() {
     using namespace std;
 
     clear();
-
     const int clear_supported = system("clear");
     const int cls_supported = system("cls");
-
     clear();
 
     cout << "Welcome in secret debug screen!" << endl << endl
-
          << "Color test:" << endl << endl
          << red << "red:     \tHello, World!" << reset << endl
          << green << "green:   \tHello, World!" << reset << endl
@@ -81,30 +72,21 @@ void debug()
          << blue << "blue:    \tHello, World!" << reset << endl
          << magenta << "magenta: \tHello, World!" << reset << endl
          << cyan << "cyan:    \tHello, World!" << reset << endl
-         << "white:   \tHello, World!" << endl << endl;
-
-    cout << "Command test:" << endl << endl
+         << "white:   \tHello, World!" << endl << endl
+         << "Command test:" << endl << endl
          << "Is " << blue << "cls" << reset << " supported: ";
 
     if (cls_supported)
-    {
         cout << red << "\tNO" << reset;
-    }
     else
-    {
         cout << green << "\tYES" << reset;
-    }
 
     cout << endl << "Is " << blue << "clear" << reset << " supported: ";
 
     if (clear_supported)
-    {
         cout << red << "\tNO" << reset;
-    }
     else
-    {
         cout << green << "\tYES" << reset;
-    }
 
     cout << endl << endl << "Compilation:" << endl << endl
          << magenta << "\tTime:\t" << reset << __TIME__ << endl
@@ -113,28 +95,23 @@ void debug()
          << cyan << "\tINT_MAX:\t" << reset << yellow << INT_MAX << reset << endl
          << cyan << "\tINT_MIN:\t" << reset << yellow << INT_MIN << reset << endl
          << endl << endl << "Write something to close debug:" << endl;
-
     read();
 }
 
 ///
 /// @brief This function is responsible for the help screen.
-void help()
-{
+void help() {
     using namespace std;
-
-    cout
-            << endl
-            << magenta << "Number Corridor" << reset << " by: " << yellow << "Comrade Cobweb" << reset << endl << endl
-            << endl
-            << "Use without arguments to play. For more information see:" << endl
-            << blue << "https://github.com/comradecobweb/NumberCorridor" << reset << endl << endl;
+    cout << endl
+         << magenta << "Number Corridor" << reset << " by: " << yellow << "Comrade Cobweb" << reset << endl << endl
+         << endl
+         << "Use without arguments to play. For more information see:" << endl
+         << blue << "https://github.com/comradecobweb/NumberCorridor" << reset << endl << endl;
 }
 
 ///
 /// @brief This function is responsible for the version screen.
-void version()
-{
+void version() {
     using namespace std;
     cout << magenta << "Number Corridor" << reset << ", version: " << red << get_version() << reset << endl << endl;
 }

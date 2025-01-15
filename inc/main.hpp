@@ -18,8 +18,7 @@ int main(int argc, char **argv);
 /// @param index Current element.
 /// @param argc Array size (count of elements).
 /// @return True if yes, false if no.
-inline bool isLast(const int &index, const int &argc)
-{
+inline bool isLast(const int &index, const int &argc) {
     return index == argc - 1;
 }
 

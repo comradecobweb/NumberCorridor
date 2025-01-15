@@ -11,10 +11,8 @@
 ///
 /// @brief A class for storing numbers.
 /// @tparam T Type of data stored in the array.
-template <class T>
-class Array
-{
-
+template<class T>
+class Array {
 private:
     T *array_data;
     const int length;
@@ -25,8 +23,7 @@ private:
     /// @brief Calculates the index of the first element of the given group.
     /// @param group_index Index of an group.
     /// @return Index of the first element of the given group.
-    [[nodiscard]] inline int calculateIndex(const int &group_index) const
-    {
+    [[nodiscard]] inline int calculateIndex(const int &group_index) const {
         return group_index * group_size;
     }
 
@@ -34,8 +31,7 @@ private:
     /// @brief Checks if the element index is correct.
     /// @param index Index of an element.
     /// @return True if yes, false if no.
-    [[nodiscard]] inline bool validateIndex(const int &index) const
-    {
+    [[nodiscard]] inline bool validateIndex(const int &index) const {
         return !(index < 0 || index > (length - 1));
     }
 
@@ -43,14 +39,12 @@ private:
     /// @brief Checks if the group index is correct.
     /// @param index Index of an group.
     /// @return True if yes, false if no.
-    [[nodiscard]] inline bool validateGroupIndex(const int &group_index) const
-    {
+    [[nodiscard]] inline bool validateGroupIndex(const int &group_index) const {
         const int index = calculateIndex(group_index);
         return validateIndex(index) && index % group_size == 0;
     }
 
 public:
-
     explicit Array(const int &length, const size_t &group_size);
 
     [[nodiscard]] T get(const int &index) const;
@@ -61,8 +55,7 @@ public:
 
     bool set(const int &group_index, T *values);
 
-    inline ~Array()
-    {
+    inline ~Array() {
         if (*array_data) free(array_data);
     }
 };

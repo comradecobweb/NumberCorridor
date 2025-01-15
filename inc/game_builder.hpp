@@ -13,8 +13,7 @@
 
 ///
 /// @brief A structure containing the data of the GameBuilder class.
-typedef struct game_data
-{
+typedef struct game_data {
     int group_size = -1;
     int length = -1;
     int max = -1;
@@ -22,16 +21,14 @@ typedef struct game_data
     ///
     /// @brief Checks whether all fields in the structure have values different from -1.
     /// @return True if yes, false if no.
-    [[nodiscard]] inline bool isInitialized() const
-    {
+    [[nodiscard]] inline bool isInitialized() const {
         return group_size != -1 && length != -1 && max != -1;
     }
 
     ///
     /// @brief Checks if game_data fields have valid values.
     /// @return True if yes, false if no.
-    [[nodiscard]] inline bool isValid() const
-    {
+    [[nodiscard]] inline bool isValid() const {
         return group_size > 0 && length > 0 && max > 1;
     }
 
@@ -50,11 +47,8 @@ private:
 
 ///
 /// @brief This class is used for run the game.
-class GameBuilder
-{
-
+class GameBuilder {
 private:
-
     game_data data;
 public:
     explicit GameBuilder(const int &max = -1, const int &length = -1, const int &group_size = -1);

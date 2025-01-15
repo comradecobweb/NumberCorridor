@@ -5,15 +5,12 @@
 /// @brief Converts string to int.
 /// @param s String to convert.
 /// @return Converted value or -1 if string is invalid.
-int to_int(const std::string &s)
-{
+int to_int(const std::string &s) {
     using namespace std;
-
     if (!is_number(s)) return -1;
 
     int i;
     stringstream stream;
-
     stream << s;
     stream >> i;
 
@@ -26,8 +23,7 @@ int to_int(const std::string &s)
 ///
 /// @brief This function is used to read single numbers from the user.
 /// @return The loaded number or -1 if an invalid value is entered (e.g. letter).
-int read()
-{
+int read() {
     using namespace std;
 
     string input;
@@ -35,7 +31,6 @@ int read()
 
     cin.clear();
     cout << cyan << ">" << reset << " ";
-
     getline(cin, input);
 
     return to_int(input);
@@ -45,8 +40,7 @@ int read()
 /// @brief This function is used to read single numbers from the user.
 /// @param color Specifies the color of characters entered by the user.
 /// @return The loaded number or -1 if an invalid value is entered (e.g. letter).
-int read(colors color)
-{
+int read(colors color) {
     using namespace std;
 
     string input;
@@ -54,9 +48,7 @@ int read(colors color)
 
     cin.clear();
     cout << cyan << ">" << reset << " " << color;
-
     getline(cin, input);
-
     cout << reset;
 
     return to_int(input);

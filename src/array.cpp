@@ -7,34 +7,23 @@
 /// @param group_size Size of groups in the array.
 /// @throw std::bad_alloc If can't allocate memory for the array.
 /// @throw std::invalid_argument() If group_size, or length are incorrect.
-template <class T>
-Array<T>::Array(const int &length, const size_t &group_size):length(length), group_size(group_size)
-{
+template<class T>
+Array<T>::Array(const int &length, const size_t &group_size):length(length), group_size(group_size) {
     if (length <= 0) throw std::invalid_argument("Array length must be greater than 0!");
     if (group_size == 0) throw std::invalid_argument("group_size in Array must be greater than 0!");
 
     array_data = (T *) malloc(sizeof(array_data) * length);
-    if (!array_data)
-    {
-        throw std::bad_alloc();
-    }
+    if (!array_data) throw std::bad_alloc();
 }
 
 ///
 /// @brief This function is used for get elements of the array.
 /// @param index Position of an element in the array.
 /// @return Selected value or -1 if the index is invalid.
-template <class T>
-T Array<T>::get(const int &index) const
-{
-    if (validateIndex(index))
-    {
-        return array_data[index];
-    }
-    else
-    {
-        return (T) -1;
-    }
+template<class T>
+T Array<T>::get(const int &index) const {
+    if (validateIndex(index)) return array_data[index];
+    return (T) -1;
 }
 
 ///
@@ -43,23 +32,17 @@ T Array<T>::get(const int &index) const
 /// @throw std::bad_alloc If can't allocate memory for the array.
 /// @throw std::invalid_argument() If group_index is incorrect.
 /// @return Elements of the selected group.
-template <class T>
-T *Array<T>::getGroup(const int &group_index) const
-{
+template<class T>
+T *Array<T>::getGroup(const int &group_index) const {
     using namespace std;
 
     if (!validateGroupIndex(group_index)) throw std::invalid_argument("Invalid group_index!");
-
     T *array = (T *) malloc(sizeof(T) * group_size);
-
     if (!array) throw std::bad_alloc();
-
     const int index = calculateIndex(group_index);
 
     for (int i = index, j = 0; i < index + group_size; i++, j++)
-    {
         array[j] = array_data[i];
-    }
 
     return array;
 }
@@ -69,18 +52,13 @@ T *Array<T>::getGroup(const int &group_index) const
 /// @param index Position of an element in the array.
 /// @param value The value that will be inserted into the array.
 /// @return True on success, false on invalid index.
-template <class T>
-bool Array<T>::set(const int &index, T value)
-{
-    if (validateIndex(index))
-    {
+template<class T>
+bool Array<T>::set(const int &index, T value) {
+    if (validateIndex(index)) {
         array_data[index] = value;
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 ///
@@ -88,20 +66,13 @@ bool Array<T>::set(const int &index, T value)
 /// @param index Position of an element in the array.
 /// @param value The value that will be inserted into the array.
 /// @return True on success, false on invalid index or invalid value.
-template <>
-bool Array<int>::set(const int &index, int value)
-{
-    if (validateIndex(index) && value != INT_MAX && value != INT_MIN)
-    {
-
+template<>
+bool Array<int>::set(const int &index, int value) {
+    if (validateIndex(index) && value != INT_MAX && value != INT_MIN) {
         array_data[index] = value;
-
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 ///
@@ -109,24 +80,17 @@ bool Array<int>::set(const int &index, int value)
 /// @param index Position of an group in the array.
 /// @param values The values that will be inserted into the array.
 /// @return True on success, false on invalid index.
-template <class T>
-bool Array<T>::set(const int &group_index, T *values)
-{
-    if (validateGroupIndex(group_index))
-    {
+template<class T>
+bool Array<T>::set(const int &group_index, T *values) {
+    if (validateGroupIndex(group_index)) {
         const int index = calculateIndex(group_index);
 
         for (int i = index, j = 0; i < index + group_size; i++, j++)
-        {
             array_data[i] = values[j];
-        }
 
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 template

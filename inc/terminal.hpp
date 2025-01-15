@@ -25,16 +25,14 @@
 
 ///
 /// @brief This enum contains colors that are available to use.
-enum colors
-{
+enum colors {
     red, green, yellow, blue, magenta, cyan, reset
 };
 
 
 ///
 /// @brief This function is used for clean the screen.
-inline void clear()
-{
+inline void clear() {
 #ifdef _WIN32
     system("cls");
 #endif
@@ -47,18 +45,14 @@ inline void clear()
 /// @brief This function is used for check is string a number.
 /// @param s String to check.
 /// @return True if yes, false if no.
-inline bool is_number(const std::string &s)
-{
+inline bool is_number(const std::string &s) {
     return !s.empty() && std::find_if(s.begin(),
-                                      s.end(), [](unsigned char c)
-                                      { return !std::isdigit(c); })
+                                      s.end(), [](unsigned char c) { return !std::isdigit(c); })
                          == s.end();
 }
 
-static std::ostream &operator<<(std::ostream &os, const colors &c)
-{
-    switch (c)
-    {
+static std::ostream &operator<<(std::ostream &os, const colors &c) {
+    switch (c) {
         case red:
             os << RED;
             break;
